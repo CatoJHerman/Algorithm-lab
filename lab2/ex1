@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int GCD_Consecutive(int m, int n) {
+    int minVal = (m < n) ? m : n;
+    int opcount = 0;
+
+    for (int i = minVal; i >= 1; i--) {
+        opcount++;
+        if (m % i == 0 && n % i == 0) {
+            printf("Operation count = %d\n", opcount);
+            return i;
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int m, n;
+    printf("Enter two numbers: ");
+    scanf("%d %d", &m, &n);
+
+    int gcd = GCD_Consecutive(m, n);
+    printf("GCD of %d and %d using consecutive integer checking = %d\n", m, n, gcd);
+
+    return 0;
+}
