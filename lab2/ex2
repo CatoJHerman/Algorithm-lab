@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+
+int GCD_MiddleSchool(int m, int n) {
+    int gcd = 1;
+    int opcount = 0; 
+
+    // Start checking prime factors from 2 upwards
+    for (int i = 2; i <= (m < n ? m : n); i++) {
+        while (m % i == 0 && n % i == 0) {
+            gcd *= i;
+            m /= i;
+            n /= i;
+            opcount++; 
+        }
+        while (m % i == 0) {
+            m /= i;
+            opcount++;
+        }
+        while (n % i == 0) {
+            n /= i;
+            opcount++;
+        }
+    }
+
+    printf("Operation count = %d\n", opcount);
+    return gcd;
+}
+
+int main() {
+    int m, n;
+    printf("Enter two numbers: ");
+    scanf("%d %d", &m, &n);
+
+    int gcd = GCD_MiddleSchool(m, n);
+    printf("GCD of %d and %d using middle school method = %d\n", m, n, gcd);
+
+    return 0;
+}
