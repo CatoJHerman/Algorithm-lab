@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+int bruteforcematch(char *text,char *pattern){
+    int n=strlen(text);
+    int m=strlen(pattern);
+    for(int i=0;i<=n-m;i++){
+        int j=0;
+        while(j<m && text[i+j]==pattern[j]){
+            j++;
+        }
+        if(j==m){
+            return i;
+        }
+    }return -1;
+}
+
+int main(){
+    char text[]="ABABDABACDABABCABAB";
+    char pattern[]="ABABCABAB";
+    int result= bruteforcematch(text, pattern);
+    if(result!=-1)
+        printf("pattern found at index %d \n", result);
+    else
+        printf("pattern not found\n");
+    return 0;
+}
