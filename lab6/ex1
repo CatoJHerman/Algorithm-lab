@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct NODE{
+    int data;
+    struct NODE *left,*right;
+};
+struct NODE* newNode(int data){
+    struct NODE*node=(struct NODE*)malloc(sizeof(struct NODE));
+    node->data=data;
+    node->left=node->right=NULL;
+    return node;
+};
+int countnodes(struct NODE* root){
+    if(root==NULL)
+        return 0;
+    return 1+ countnodes(root->left)+ countnodes(root->right);
+}
+
+void main(){
+    struct NODE *root=newNode(1);
+    root->left=newNode(2);
+    root->right=newNode(3);
+    root->left->left=newNode(4);
+    root->left->right=newNode(5);
+    int totalNodes=countnodes(root);
+    printf("Ttl no of nodes in binary tree: %d \n",totalNodes);
+}
